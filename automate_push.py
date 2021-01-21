@@ -6,7 +6,7 @@ git_root="/auto/tftp-blr-users4/vsampree/python_scripts"
 repo = Repo(git_root)
 
 try:
-	stat, ret, err = repo.git.execute(('git branch branch1').split(), with_extended_output=True)
+	stat, ret, err = repo.git.execute(('git branch branch2').split(), with_extended_output=True)
 except GitCommandError as ex:
         print(ex)
 	#raise RuntimeError("git branch failed\n%s"%(str(ex)))
@@ -22,14 +22,14 @@ except GitCommandError as ex:
 print("git add passed: ",ret)
 
 try:
-    stat, ret, err = repo.git.execute(('git commit -m \"commit_test2\"').split(), with_extended_output=True)
+    stat, ret, err = repo.git.execute(('git commit -m \'commit_test2\'').split(), with_extended_output=True)
 except GitCommandError as ex:
 	raise RuntimeError("git commit failed\n%s"%(str(ex)))
 
 print("git commit passed: ",ret)
 
 try:
-	stat,ret,err = repo.git.execute(('git push origin branch1').split(), with_extended_output=True)
+	stat,ret,err = repo.git.execute(('git push origin branch2').split(), with_extended_output=True)
 except GitCommandError as ex:
 	raise RuntimeError("git push failed\n%s"%(str(ex)))
 
