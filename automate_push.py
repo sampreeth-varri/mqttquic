@@ -1,17 +1,32 @@
 from git import Repo, GitCommandError
 
+wsdir="/auto/tftp-blr-users4/vsampree/python_scripts"
+bugid="bugid"
+branchlist="branch"
+commitmsg="commit msg"
 
 
-git_root="/auto/tftp-blr-users4/vsampree/python_scripts"
+
+
+repo = Repo(ws_dir)
+branch=bugid+"."+branchlist
+
 repo = Repo(git_root)
 
 try:
-	stat, ret, err = repo.git.execute(('git branch branch2').split(), with_extended_output=True)
+	stat, ret, err = repo.git.execute(('git branch %s' %(branch)).split(), with_extended_output=True)
 except GitCommandError as ex:
         print(ex)
 	#raise RuntimeError("git branch failed\n%s"%(str(ex)))
 
 print("git branch passed: ")
+
+try:
+	stat, ret, err = repo.git.execute(('git checkout %s' %(branch)).split(), with_extended_output=True)
+except GitCommandError as ex:
+	raise RuntimeError("git checkout failed\n%s"%(str(ex)))
+
+print("git checkout passed: ",ret)
 
 
 try:
@@ -21,6 +36,7 @@ except GitCommandError as ex:
 
 print("git add passed: ",ret)
 
+commitmsg=commitmsg.replace(" ","_")
 try:
     stat, ret, err = repo.git.execute(('git commit -m \'commit_test2\'').split(), with_extended_output=True)
 except GitCommandError as ex:
@@ -29,7 +45,7 @@ except GitCommandError as ex:
 print("git commit passed: ",ret)
 
 try:
-	stat,ret,err = repo.git.execute(('git push origin branch2').split(), with_extended_output=True)
+	stat,ret,err = repo.git.execute(('git push origin %s' %(branch)).split(), with_extended_output=True)
 except GitCommandError as ex:
 	raise RuntimeError("git push failed\n%s"%(str(ex)))
 
