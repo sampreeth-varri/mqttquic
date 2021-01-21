@@ -24,3 +24,4 @@ except GitCommandError as ex:
 	raise RuntimeError("git push failed\n%s"%(str(ex)))
 
 print("git push passed: ",ret)
+print("stat: ",stat)
