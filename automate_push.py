@@ -23,6 +23,6 @@ try:
 except GitCommandError as ex:
 	raise RuntimeError("git push failed\n%s"%(str(ex)))
 
-output=foo.stderr.split()
-print("git push passed: ",output)
+#output=foo.stderr.split()
+print("git push passed: ",foo)
 #print("stat: ",stat)
