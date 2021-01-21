@@ -6,12 +6,19 @@ git_root="/auto/tftp-blr-users4/vsampree/python_scripts"
 repo = Repo(git_root)
 
 try:
-	stat, ret, err = repo.git.execute(('git branch branch2').split(), with_extended_output=True)
+	stat, ret, err = repo.git.execute(('git branch branch4').split(), with_extended_output=True)
 except GitCommandError as ex:
         print(ex)
 	#raise RuntimeError("git branch failed\n%s"%(str(ex)))
 
 print("git branch passed: ")
+
+try:
+	stat, ret, err = repo.git.execute(('git checkout branch4').split(), with_extended_output=True)
+except GitCommandError as ex:
+	raise RuntimeError("git checkout failed\n%s"%(str(ex)))
+
+print("git checkout passed: ",ret)
 
 
 try:
@@ -29,7 +36,7 @@ except GitCommandError as ex:
 print("git commit passed: ",ret)
 
 try:
-	stat,ret,err = repo.git.execute(('git push origin branch2').split(), with_extended_output=True)
+	stat,ret,err = repo.git.execute(('git push origin branch4').split(), with_extended_output=True)
 except GitCommandError as ex:
 	raise RuntimeError("git push failed\n%s"%(str(ex)))
 
