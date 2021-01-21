@@ -8,9 +8,10 @@ repo = Repo(git_root)
 try:
 	stat, ret, err = repo.git.execute(('git branch branch1').split(), with_extended_output=True)
 except GitCommandError as ex:
-	raise RuntimeError("git branch failed\n%s"%(str(ex)))
+        print(ex)
+	#raise RuntimeError("git branch failed\n%s"%(str(ex)))
 
-print("git branch passed: ",err)
+print("git branch passed: ")
 
 
 try:
@@ -28,7 +29,7 @@ except GitCommandError as ex:
 print("git commit passed: ",ret)
 
 try:
-	stat,ret,err = repo.git.execute(('git push origin brnach1').split(), with_extended_output=True)
+	stat,ret,err = repo.git.execute(('git push origin branch1').split(), with_extended_output=True)
 except GitCommandError as ex:
 	raise RuntimeError("git push failed\n%s"%(str(ex)))
 
