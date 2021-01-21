@@ -12,7 +12,7 @@ except GitCommandError as ex:
 print("git add passed: ",ret)
 
 try:
-	stat, ret, err = repo.git.commit('-m', 'commit message from python script')
+    stat, ret, err = repo.git.execute(('git commit -m \"commit\"').split(), with_extended_output=True)
 except GitCommandError as ex:
 	raise RuntimeError("git commit failed\n%s"%(str(ex)))
 
