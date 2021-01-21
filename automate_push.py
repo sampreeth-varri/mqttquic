@@ -8,10 +8,9 @@ commitmsg="commit msg"
 
 
 
-repo = Repo(ws_dir)
+repo = Repo(wsdir)
 branch=bugid+"."+branchlist
 
-repo = Repo(git_root)
 
 try:
 	stat, ret, err = repo.git.execute(('git branch %s' %(branch)).split(), with_extended_output=True)
