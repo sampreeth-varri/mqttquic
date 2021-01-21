@@ -19,10 +19,10 @@ except GitCommandError as ex:
 print("git commit passed: ",ret)
 
 try:
-	foo = repo.git.execute(('git push origin master').split(), with_extended_output=True)
+	stat,ret,err = repo.git.execute(('git push origin master').split(), with_extended_output=True)
 except GitCommandError as ex:
 	raise RuntimeError("git push failed\n%s"%(str(ex)))
 
 #output=foo.stderr.split()
-print("git push passed: ",foo)
+print("git push passed: ",err)
 #print("stat: ",stat)
